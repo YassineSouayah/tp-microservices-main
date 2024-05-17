@@ -1,0 +1,39 @@
+syntax = "proto3";
+package book;
+// Définition du message book  
+message Book {
+string id = 1;
+string title = 2;
+string description = 3;
+// Ajouter d'autres champs de données pour les séries book au besoin
+}
+// Définition des messages de requête et de réponse pour les méthodes
+message GetbookRequest {
+string book_id = 1;
+}
+message GetbookResponse {
+Book book = 1;
+}
+message SearchbooksRequest {
+string query = 1;
+}
+message SearchbooksResponse {
+repeated Book book = 1;
+}
+
+message AddbookRequest {
+    string title = 1;
+    string description = 2;
+}
+
+message AddbookResponse {
+    Book book = 1;
+}
+// Définition du service de séries book
+service bookService {
+rpc GetBook(GetbookRequest) returns (GetbookResponse);
+rpc SearchBooks(SearchbooksRequest) returns (SearchbooksResponse);
+rpc AddBook(AddbookRequest) returns (AddbookResponse);
+
+// Ajouter d'autres méthodes au besoin
+}
